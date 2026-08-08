@@ -1,12 +1,15 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-const isProduction = process.env.NODE_ENV === 'production';
+// El uso de SSL depende de DB_SSL, NO de NODE_ENV.
+// Postgres local (docker-compose, desarrollo) no soporta SSL.
+// Activa DB_SSL=true solo cuando la base de datos este en un proveedor
+// cloud que lo requiera (ej: Render con conexion externa, Cloud SQL con SSL forzado).
+const useSSL = process.env.DB_SSL === 'true';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  // Render, Railway, etc. requieren SSL en produccion
-  ssl: isProduction ? { rejectUnauthorized: false } : false,
+  ssl: useSSL ? { rejectUnauthorized: false } : false,
 });
 
 pool.on('error', (err) => {
