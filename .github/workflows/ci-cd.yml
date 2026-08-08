@@ -1,0 +1,70 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  backend-build-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      - name: Checkout codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Instalar dependencias del backend
+        run: npm install
+
+      - name: Verificar sintaxis del backend
+        run: node -c src/server.js
+
+      - name: Ejecutar pruebas del backend (si existen)
+        run: npm test --if-present
+
+  frontend-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependencias del frontend
+        run: npm install
+
+      - name: Build de produccion del frontend
+        run: npm run build
+
+  docker-build:
+    needs: [backend-build-test, frontend-build]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout codigo
+        uses: actions/checkout@v4
+
+      - name: Construir imagen Docker del backend
+        run: docker build -t instituto-nacional-armenia-backend:${{ github.sha }} ./backend
+
+      - name: Construir imagen Docker del frontend
+        run: docker build -t instituto-nacional-armenia-frontend:${{ github.sha }} .
+
+      - name: Confirmar que las imagenes quedaron listas
+        run: |
+          echo "Imagenes construidas correctamente. Render desplegara"
+          echo "automaticamente este commit via su integracion nativa con GitHub."
