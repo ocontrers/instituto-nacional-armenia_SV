@@ -51,7 +51,12 @@ export const ListaAlumnos = ({ recargar }) => {
 
   return (
     <div className={styles.contenedor}>
-      <h2 className={styles.titulo}>Listado de alumnos</h2>
+      <div className={styles.filaTitulo}>
+        <h2 className={styles.titulo}>Listado de alumnos</h2>
+        <p className={styles.contador}>
+          {alumnosFiltrados.length} de {alumnos.length} alumnos
+        </p>
+      </div>
 
       <div className={styles.controles}>
         <input
@@ -74,24 +79,26 @@ export const ListaAlumnos = ({ recargar }) => {
         </select>
       </div>
 
-      <p className={styles.contador}>
-        Mostrando: {alumnosFiltrados.length} alumnos de {alumnos.length}
-      </p>
-
-      <div className={styles.lista}>
-        {alumnosPagina.map((alumno) => (
-          <TarjetaAlumno
-            key={alumno.id}
-            id={alumno.id}
-            nombre={alumno.nombre}
-            apellido={alumno.apellido}
-            grado={alumno.grado}
-            seccion={alumno.seccion}
-            onSeleccionarAlumno={(id) => navigate(`/alumnos/${id}`)}
-            onEditar={(alumno) => navigate(`/alumnos/${alumno.id}/editar`)}
-          />
-        ))}
-      </div>
+      {alumnosFiltrados.length === 0 ? (
+        <p className={styles.vacio}>
+          No se encontraron alumnos con los filtros seleccionados.
+        </p>
+      ) : (
+        <div className={styles.lista}>
+          {alumnosPagina.map((alumno) => (
+            <TarjetaAlumno
+              key={alumno.id}
+              id={alumno.id}
+              nombre={alumno.nombre}
+              apellido={alumno.apellido}
+              grado={alumno.grado}
+              seccion={alumno.seccion}
+              onSeleccionarAlumno={(id) => navigate(`/alumnos/${id}`)}
+              onEditar={(alumno) => navigate(`/alumnos/${alumno.id}/editar`)}
+            />
+          ))}
+        </div>
+      )}
 
       {totalPaginas > 1 && (
         <div className={styles.paginacion}>

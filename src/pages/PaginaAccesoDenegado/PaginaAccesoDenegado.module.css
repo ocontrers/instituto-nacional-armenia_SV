@@ -1,0 +1,30 @@
+.pantalla {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+.contenido {
+  max-width: 420px;
+  text-align: center;
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--fuente-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  color: var(--ladrillo);
+  margin-bottom: 0.6rem;
+}
+
+.titulo {
+  margin-bottom: 0.75rem;
+}
+
+.texto {
+  color: var(--piedra);
+  margin-bottom: 2rem;
+}

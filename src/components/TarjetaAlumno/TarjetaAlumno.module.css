@@ -1,20 +1,46 @@
 .tarjeta {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
+  background-color: var(--papel-alto);
+  border: 1px solid var(--piedra-suave);
+  border-left: 4px solid var(--bronce);
+  border-radius: var(--radio-md);
+  padding: 1.25rem 1.35rem;
+  box-shadow: var(--sombra-tarjeta);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.encabezadoTarjeta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .nombre {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 0;
 }
 
-.estadoActivo {
-  color: red;
-  font-weight: 600;
+.datos {
+  font-size: 0.875rem;
+  color: var(--piedra);
+  margin: 0;
 }
 
-.estadoInactivo {
-  color: green;
-  font-weight: 600;
+.valorMono {
+  font-family: var(--fuente-mono);
+  color: var(--tinta);
+}
+
+.separador {
+  margin: 0 0.4rem;
+  color: var(--piedra-suave);
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
 }

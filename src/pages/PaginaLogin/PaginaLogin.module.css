@@ -1,0 +1,97 @@
+.pantalla {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.panelInstitucional {
+  background-color: var(--tinta);
+  background-image: radial-gradient(
+    circle at 20% 20%,
+    rgba(169, 120, 47, 0.18),
+    transparent 55%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+}
+
+.contenidoPanel {
+  text-align: center;
+  max-width: 320px;
+}
+
+.escudo {
+  width: 150px;
+  height: auto;
+  filter: invert(1) brightness(1.9);
+  margin-bottom: 1.5rem;
+}
+
+.lema {
+  font-family: var(--fuente-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--papel);
+  margin: 0 0 0.5rem;
+}
+
+.ubicacion {
+  font-family: var(--fuente-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bronce-claro);
+  margin: 0;
+}
+
+.panelFormulario {
+  background-color: var(--papel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+.tarjetaLogin {
+  width: 100%;
+  max-width: 380px;
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--fuente-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bronce);
+  margin-bottom: 0.5rem;
+}
+
+.titulo {
+  margin-bottom: 0.4rem;
+}
+
+.subtitulo {
+  color: var(--piedra);
+  font-size: 0.9375rem;
+  margin: 0 0 2rem;
+}
+
+.btnIngresar {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+@media (min-width: 900px) {
+  .pantalla {
+    grid-template-columns: 0.85fr 1fr;
+  }
+
+  .escudo {
+    width: 190px;
+  }
+}

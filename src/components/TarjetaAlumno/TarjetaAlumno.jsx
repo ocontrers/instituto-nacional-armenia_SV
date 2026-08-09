@@ -16,32 +16,46 @@ export const TarjetaAlumno = ({
 
   return (
     <div className={styles.tarjeta}>
-      <h2 className={styles.nombre}>
-        Nombre: {nombre} {apellido}
-      </h2>
+      <div className={styles.encabezadoTarjeta}>
+        <h2 className={styles.nombre}>
+          {nombre} {apellido}
+        </h2>
 
-      <p>
-        Grado: {grado} / Seccion: {seccion}
+        <span
+          className={`badge ${matriculaActiva ? 'badge-musgo' : 'badge-ladrillo'}`}
+        >
+          {matriculaActiva ? 'Activa' : 'Inactiva'}
+        </span>
+      </div>
+
+      <p className={styles.datos}>
+        Grado <span className={styles.valorMono}>{grado || '—'}</span>
+        <span className={styles.separador}>·</span>
+        Sección <span className={styles.valorMono}>{seccion || '—'}</span>
       </p>
 
-      <p>Estado de matricula: {matriculaActiva ? 'Activa' : 'Inactiva'}</p>
+      <div className={styles.acciones}>
+        <button
+          className={`btn btn-sm ${matriculaActiva ? 'btn-peligro' : 'btn-exito'}`}
+          onClick={toggleMatricula}
+        >
+          {matriculaActiva ? 'Desactivar matrícula' : 'Activar matrícula'}
+        </button>
 
-      <button
-        className={
-          matriculaActiva ? styles.estadoActivo : styles.estadoInactivo
-        }
-        onClick={toggleMatricula}
-      >
-        {matriculaActiva ? 'Desactivar matricula' : 'Activar matricula'}
-      </button>
+        <button
+          className='btn btn-sm btn-secundario'
+          onClick={() => onSeleccionarAlumno(id)}
+        >
+          Ver detalle
+        </button>
 
-      <button onClick={() => onSeleccionarAlumno(id)}>Ver detalle</button>
-
-      <button
-        onClick={() => onEditar({ id, nombre, apellido, grado, seccion })}
-      >
-        Editar
-      </button>
+        <button
+          className='btn btn-sm btn-secundario'
+          onClick={() => onEditar({ id, nombre, apellido, grado, seccion })}
+        >
+          Editar
+        </button>
+      </div>
     </div>
   );
 };

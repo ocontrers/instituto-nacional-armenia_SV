@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ListaAlumnos } from '../../components/ListaAlumnos/ListaAlumnos';
+import styles from './PaginaListaAlumnos.module.css';
 
 export const PaginaListaAlumnos = () => {
-  const [recargar, setRecargar] = useState(0);
+  const [recargar] = useState(0);
 
   return (
-    <div>
-      <Link to={'/alumnos/nuevo'}>Registrar nuevo alumno</Link>
+    <div className='pagina'>
+      <div className={styles.barraAcciones}>
+        <Link to={'/alumnos/nuevo'} className='btn btn-primario'>
+          + Registrar nuevo alumno
+        </Link>
+      </div>
 
       <ListaAlumnos recargar={recargar} />
     </div>

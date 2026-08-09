@@ -2,28 +2,28 @@
    Contenedor Principal y Tipografía
    ========================================== */
 .contenedor {
-  max-width: 1200px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 1.5rem;
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
-  color: #2d3748;
 }
 
 .titulo {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #1a202c;
+  font-size: 1.6rem;
+  margin-bottom: 0.35rem;
+}
+
+.filaTitulo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--bronce-suave);
 }
 
 /* ==========================================
-   Filtros y Controles (Mobile First)
+   Filtros y Controles
    ========================================== */
 .controles {
   display: flex;
@@ -35,27 +35,27 @@
 .inputBusqueda,
 .selectFiltro {
   width: 100%;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.5rem;
-  background-color: #ffffff;
-  color: #4a5568;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9375rem;
+  font-family: var(--fuente-cuerpo);
+  border: 1px solid var(--piedra-suave);
+  border-radius: var(--radio-sm);
+  background-color: var(--papel-alto);
+  color: var(--tinta);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .inputBusqueda:focus,
 .selectFiltro:focus {
   outline: none;
-  border-color: #3182ce;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+  border-color: var(--bronce);
+  box-shadow: 0 0 0 3px var(--bronce-suave);
 }
 
 .contador {
-  font-size: 0.875rem;
-  color: #718096;
+  font-family: var(--fuente-mono);
+  font-size: 0.8125rem;
+  color: var(--piedra);
   margin-bottom: 1.5rem;
 }
 
@@ -65,14 +65,23 @@
 .lista {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.25rem;
+  gap: 1.1rem;
   margin-bottom: 2rem;
+}
+
+.vacio {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background-color: var(--papel-alto);
+  border: 1px dashed var(--piedra-suave);
+  border-radius: var(--radio-md);
+  color: var(--piedra);
 }
 
 /* ==========================================
    Paginación
    ========================================== */
-.paginación {
+.paginacion {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,36 +91,33 @@
 }
 
 .btnPagina {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.375rem;
-  color: #4a5568;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: var(--fuente-mono);
+  background-color: var(--papel-alto);
+  border: 1px solid var(--piedra-suave);
+  border-radius: var(--radio-sm);
+  color: var(--tinta);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .btnPagina:hover:not(:disabled) {
-  background-color: #f7fafc;
-  border-color: #cbd5e0;
-  color: #1a202c;
+  border-color: var(--bronce);
+  color: var(--bronce);
 }
 
 .btnPagina:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
-.btnActivo {
-  background-color: #3182ce;
-  border-color: #3182ce;
-  color: #ffffff;
-}
-
+.btnActivo,
 .btnActivo:hover {
-  background-color: #2b6cb0;
+  background-color: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--papel-alto);
 }
 
 /* ==========================================

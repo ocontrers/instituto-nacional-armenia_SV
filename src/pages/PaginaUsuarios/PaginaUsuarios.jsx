@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { obtenerUsuarios } from '../../services/authService';
 import { manejarError } from '../../utils/manejarError';
+import styles from './PaginaUsuarios.module.css';
 
 export const PaginaUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -18,6 +19,8 @@ export const PaginaUsuarios = () => {
         setUsuarios(res);
       } catch (error) {
         setError(manejarError(error));
+      } finally {
+        setCargando(false);
       }
     };
 
@@ -25,22 +28,36 @@ export const PaginaUsuarios = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Gestion de usuarios</h2>
+    <div className='pagina'>
+      <div className={styles.filaTitulo}>
+        <h2 className={styles.titulo}>Gestión de usuarios</h2>
+        <p className={styles.contador}>
+          {usuarios.length} usuario{usuarios.length !== 1 && 's'} registrado
+          {usuarios.length !== 1 && 's'}
+        </p>
+      </div>
 
-      <p>Total de usuarios registrados: {usuarios.length}</p>
+      {cargando && <p className={styles.vacio}>Cargando usuarios…</p>}
 
-      {usuarios.length === 0 ? (
-        <p>No hay usuarios registrados en el sistema</p>
-      ) : (
-        usuarios.map((usuario) => (
-          <div key={usuario.id}>
-            <p>Nombre: {usuario.nombre}</p>
-            <p>Email: {usuario.email}</p>
-            <p>Rol: {usuario.rol}</p>
-          </div>
-        ))
+      {error && <p className='error-campo'>{error.mensaje || 'Ocurrió un error al cargar los usuarios.'}</p>}
+
+      {!cargando && usuarios.length === 0 && !error && (
+        <p className={styles.vacio}>
+          No hay usuarios registrados en el sistema.
+        </p>
       )}
+
+      <div className={styles.lista}>
+        {usuarios.map((usuario) => (
+          <div key={usuario.id} className={styles.tarjetaUsuario}>
+            <div>
+              <p className={styles.nombreUsuario}>{usuario.nombre}</p>
+              <p className={styles.emailUsuario}>{usuario.email}</p>
+            </div>
+            <span className='badge badge-bronce'>{usuario.rol}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

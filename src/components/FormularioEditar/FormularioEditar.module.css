@@ -1,0 +1,36 @@
+.ficha {
+  padding: 2rem 2.25rem 2.25rem;
+  border-top: 4px solid var(--bronce);
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--fuente-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bronce);
+  margin-bottom: 0.4rem;
+}
+
+.titulo {
+  margin-bottom: 1.75rem;
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 1rem;
+}
+
+.acciones {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 520px) {
+  .fila {
+    grid-template-columns: 1fr 1fr;
+  }
+}

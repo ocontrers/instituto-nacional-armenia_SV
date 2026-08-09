@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../../services/authService';
 import { manejarError } from '../../utils/manejarError';
 import { validarCamposLogin } from '../../utils/validarCampos';
+import styles from './PaginaLogin.module.css';
 
 export const PaginaLogin = () => {
   const navigate = useNavigate();
   const [campos, setCampos] = useState({ email: '', password: '' });
   const [errores, setErrores] = useState({});
+  const [enviando, setEnviando] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +30,7 @@ export const PaginaLogin = () => {
     }
 
     try {
+      setEnviando(true);
       const res = await login(campos.email, campos.password);
 
       localStorage.setItem('token', res.token);
@@ -36,39 +39,79 @@ export const PaginaLogin = () => {
       navigate('/');
     } catch (error) {
       setErrores(manejarError(error));
+    } finally {
+      setEnviando(false);
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') handleLogin();
+  };
+
   return (
-    <div>
-      <h1>Instituto Nacional de Armenia</h1>
-      <h2>Iniciar Sesión</h2>
+    <div className={styles.pantalla}>
+      <aside className={styles.panelInstitucional}>
+        <div className={styles.contenidoPanel}>
+          <img
+            src='/logo-ina.png'
+            alt='Escudo del Instituto Nacional de Armenia'
+            className={styles.escudo}
+          />
+          <p className={styles.lema}>Estudio · Sabiduría · Progreso</p>
+          <p className={styles.ubicacion}>Sonsonate, El Salvador</p>
+        </div>
+      </aside>
 
-      <div>
-        <label>Email</label>
-        <input
-          type='email'
-          name='email'
-          value={campos.email}
-          onChange={handleChange}
-          placeholder='correo@ejemplo.com'
-        />
-        {errores.email && <p>{errores.email}</p>}
-      </div>
+      <main className={styles.panelFormulario}>
+        <div className={styles.tarjetaLogin}>
+          <span className={styles.eyebrow}>Sistema de Gestión</span>
+          <h1 className={styles.titulo}>Iniciar sesión</h1>
+          <p className={styles.subtitulo}>
+            Ingresa con tu cuenta institucional para administrar los registros
+            de alumnos.
+          </p>
 
-      <div>
-        <label>Contraseña</label>
-        <input
-          type='password'
-          name='password'
-          value={campos.password}
-          onChange={handleChange}
-          placeholder='Tu contraseña'
-        />
-        {errores.password && <p>{errores.password}</p>}
-      </div>
+          <div className='campo'>
+            <label htmlFor='email'>Correo institucional</label>
+            <input
+              id='email'
+              type='email'
+              name='email'
+              value={campos.email}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              placeholder='correo@ejemplo.com'
+              autoComplete='username'
+            />
+            {errores.email && <p className='error-campo'>{errores.email}</p>}
+          </div>
 
-      <button onClick={handleLogin}>Ingresar</button>
+          <div className='campo'>
+            <label htmlFor='password'>Contraseña</label>
+            <input
+              id='password'
+              type='password'
+              name='password'
+              value={campos.password}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              placeholder='Tu contraseña'
+              autoComplete='current-password'
+            />
+            {errores.password && (
+              <p className='error-campo'>{errores.password}</p>
+            )}
+          </div>
+
+          <button
+            onClick={handleLogin}
+            disabled={enviando}
+            className={`btn btn-primario ${styles.btnIngresar}`}
+          >
+            {enviando ? 'Ingresando…' : 'Ingresar'}
+          </button>
+        </div>
+      </main>
     </div>
   );
 };

@@ -1,0 +1,43 @@
+.expediente {
+  padding: 2rem 2.25rem 2.25rem;
+  border-top: 4px solid var(--bronce);
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--fuente-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bronce);
+  margin-bottom: 0.4rem;
+}
+
+.titulo {
+  margin-bottom: 1.5rem;
+}
+
+.listaDatos {
+  margin: 0 0 2rem;
+}
+
+.filaDato {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--piedra-suave);
+}
+
+.filaDato dt {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--piedra);
+}
+
+.filaDato dd {
+  margin: 0;
+  font-family: var(--fuente-mono);
+  color: var(--tinta);
+}

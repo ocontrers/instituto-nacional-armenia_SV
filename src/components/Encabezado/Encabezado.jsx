@@ -1,5 +1,6 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, NavLink } from 'react-router-dom';
 import { obtenerRolUsuario } from '../../utils/jwt';
+import styles from './Encabezado.module.css';
 
 export const Encabezado = () => {
   const navigate = useNavigate();
@@ -15,18 +16,52 @@ export const Encabezado = () => {
   };
 
   return (
-    <header>
-      <h1>Instituto Nacional de Armenia - Sistema de Gestion</h1>
+    <header className={styles.encabezado}>
+      <div className={styles.franja}>
+        <Link to='/' className={styles.marca}>
+          <img
+            src='/logo-ina-icono.png'
+            alt=''
+            className={styles.logo}
+          />
+          <div className={styles.textoMarca}>
+            <span className={styles.eyebrow}>Instituto Nacional de</span>
+            <span className={styles.nombreInstitucion}>Armenia</span>
+          </div>
+        </Link>
 
-      <nav>
-        <Link to='/'>Alumnos</Link>
+        <nav className={styles.nav}>
+          <NavLink
+            to='/'
+            end
+            className={({ isActive }) =>
+              isActive ? `${styles.navLink} ${styles.navLinkActivo}` : styles.navLink
+            }
+          >
+            Alumnos
+          </NavLink>
 
-        {rol === 'ADMIN' && <Link to='/usuarios'>Usuarios</Link>}
-      </nav>
+          {rol === 'ADMIN' && (
+            <NavLink
+              to='/usuarios'
+              className={({ isActive }) =>
+                isActive ? `${styles.navLink} ${styles.navLinkActivo}` : styles.navLink
+              }
+            >
+              Usuarios
+            </NavLink>
+          )}
+        </nav>
 
-      <p>Usuario activo: {usuario.nombre}</p>
-
-      <button onClick={handleLogout}>Cerrar Sesion</button>
+        <div className={styles.sesion}>
+          <span className={styles.usuarioActivo}>
+            {usuario?.nombre}
+          </span>
+          <button onClick={handleLogout} className='btn btn-fantasma btn-sm'>
+            Cerrar sesión
+          </button>
+        </div>
+      </div>
     </header>
   );
 };

@@ -349,3 +349,272 @@ template {
 [hidden] {
   display: none;
 }
+
+/* ==========================================================================
+   Sistema de diseño — Instituto Nacional de Armenia
+   Paleta institucional: tinta, papel, bronce, musgo, ladrillo, piedra.
+   ========================================================================== */
+
+:root {
+  --tinta: #1e2e3d;
+  --tinta-clara: #2c4257;
+  --papel: #f3f0e6;
+  --papel-alto: #ffffff;
+  --bronce: #a9782f;
+  --bronce-claro: #c79a4b;
+  --bronce-suave: #f1e6d2;
+  --musgo: #2e5940;
+  --musgo-suave: #e1ece5;
+  --ladrillo: #8c3b2e;
+  --ladrillo-suave: #f3e2de;
+  --piedra: #6b7280;
+  --piedra-suave: #dcd7c9;
+
+  --fuente-display: 'Fraunces', Georgia, serif;
+  --fuente-cuerpo: 'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fuente-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --radio-sm: 3px;
+  --radio-md: 6px;
+  --sombra-tarjeta: 0 1px 2px rgba(30, 46, 61, 0.06), 0 2px 8px rgba(30, 46, 61, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--papel);
+  color: var(--tinta);
+  font-family: var(--fuente-cuerpo);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--fuente-display);
+  font-weight: 600;
+  color: var(--tinta);
+  line-height: 1.25;
+  margin: 0 0 0.5em;
+}
+
+a {
+  color: var(--bronce);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: var(--fuente-cuerpo);
+}
+
+/* Foco visible y accesible en toda la app */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--bronce);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Utilidades globales reutilizables
+   ========================================================================== */
+
+.pagina {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.pagina-angosta {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radio-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.05s ease;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primario {
+  background-color: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--papel-alto);
+}
+
+.btn-primario:hover {
+  background-color: var(--tinta-clara);
+  border-color: var(--tinta-clara);
+  text-decoration: none;
+}
+
+.btn-secundario {
+  background-color: transparent;
+  border-color: var(--piedra-suave);
+  color: var(--tinta);
+}
+
+.btn-secundario:hover {
+  border-color: var(--bronce);
+  color: var(--bronce);
+  text-decoration: none;
+}
+
+.btn-peligro {
+  background-color: transparent;
+  border-color: var(--ladrillo);
+  color: var(--ladrillo);
+}
+
+.btn-peligro:hover {
+  background-color: var(--ladrillo);
+  color: var(--papel-alto);
+  text-decoration: none;
+}
+
+.btn-exito {
+  background-color: transparent;
+  border-color: var(--musgo);
+  color: var(--musgo);
+}
+
+.btn-exito:hover {
+  background-color: var(--musgo);
+  color: var(--papel-alto);
+  text-decoration: none;
+}
+
+.btn-fantasma {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--piedra);
+  padding: 0.65rem 0.75rem;
+}
+
+.btn-fantasma:hover {
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+/* Campos de formulario */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.1rem;
+}
+
+.campo label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--piedra);
+}
+
+.entrada,
+.campo input,
+.campo select {
+  font-family: var(--fuente-cuerpo);
+  font-size: 1rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--piedra-suave);
+  border-radius: var(--radio-sm);
+  background-color: var(--papel-alto);
+  color: var(--tinta);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: none;
+  border-color: var(--bronce);
+  box-shadow: 0 0 0 3px var(--bronce-suave);
+}
+
+.error-campo {
+  font-size: 0.8125rem;
+  color: var(--ladrillo);
+  margin: 0;
+}
+
+/* Insignias de estado */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--fuente-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.badge-musgo {
+  background-color: var(--musgo-suave);
+  color: var(--musgo);
+}
+
+.badge-ladrillo {
+  background-color: var(--ladrillo-suave);
+  color: var(--ladrillo);
+}
+
+.badge-bronce {
+  background-color: var(--bronce-suave);
+  color: var(--bronce);
+}
+
+/* Tarjeta base */
+.tarjeta-base {
+  background-color: var(--papel-alto);
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.dato-mono {
+  font-family: var(--fuente-mono);
+  font-size: 0.9em;
+  color: var(--piedra);
+}

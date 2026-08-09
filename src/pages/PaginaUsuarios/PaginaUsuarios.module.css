@@ -1,0 +1,62 @@
+.filaTitulo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--bronce-suave);
+}
+
+.titulo {
+  margin: 0;
+}
+
+.contador {
+  font-family: var(--fuente-mono);
+  font-size: 0.8125rem;
+  color: var(--piedra);
+  margin: 0;
+}
+
+.vacio {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background-color: var(--papel-alto);
+  border: 1px dashed var(--piedra-suave);
+  border-radius: var(--radio-md);
+  color: var(--piedra);
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tarjetaUsuario {
+  background-color: var(--papel-alto);
+  border: 1px solid var(--piedra-suave);
+  border-left: 4px solid var(--tinta);
+  border-radius: var(--radio-md);
+  padding: 1rem 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.nombreUsuario {
+  font-family: var(--fuente-display);
+  font-weight: 600;
+  margin: 0 0 0.15rem;
+}
+
+.emailUsuario {
+  font-family: var(--fuente-mono);
+  font-size: 0.8125rem;
+  color: var(--piedra);
+  margin: 0;
+}

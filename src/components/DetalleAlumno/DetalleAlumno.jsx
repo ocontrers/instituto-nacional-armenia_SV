@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { obtenerAlumnoPorId } from '../../services/alumnosService.js';
+import styles from './DetalleAlumno.module.css';
 
 export const DetalleAlumno = ({ idAlumno, onCerrar }) => {
   const [alumno, setAlumno] = useState(null);
@@ -19,18 +20,28 @@ export const DetalleAlumno = ({ idAlumno, onCerrar }) => {
   }, [idAlumno]);
 
   return (
-    <div>
-      <h2>Detalle del alumno</h2>
+    <div className='pagina-angosta'>
+      <div className={`tarjeta-base ${styles.expediente}`}>
+        <span className={styles.eyebrow}>Expediente del alumno</span>
+        <h2 className={styles.titulo}>
+          {alumno ? `${alumno.nombre} ${alumno.apellido}` : 'Cargando…'}
+        </h2>
 
-      <p>
-        Nombre: {alumno?.nombre} {alumno?.apellido}
-      </p>
+        <dl className={styles.listaDatos}>
+          <div className={styles.filaDato}>
+            <dt>Grado</dt>
+            <dd>{alumno?.grado || '—'}</dd>
+          </div>
+          <div className={styles.filaDato}>
+            <dt>Sección</dt>
+            <dd>{alumno?.seccion || '—'}</dd>
+          </div>
+        </dl>
 
-      <p>Grado: {alumno?.grado}</p>
-
-      <p>Seccion: {alumno?.seccion}</p>
-
-      <button onClick={onCerrar}>Cerrar detalle</button>
+        <button onClick={onCerrar} className='btn btn-secundario'>
+          Cerrar detalle
+        </button>
+      </div>
     </div>
   );
 };
